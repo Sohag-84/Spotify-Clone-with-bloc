@@ -1,0 +1,139 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
+import 'package:spotify_clone_using_bloc/common/widgets/button/basic_app_button.dart';
+import 'package:spotify_clone_using_bloc/core/config/assets/app_images.dart';
+import 'package:spotify_clone_using_bloc/core/config/assets/app_vectors.dart';
+import 'package:spotify_clone_using_bloc/core/config/theme/app_colors.dart';
+
+class ChooseModePage extends StatelessWidget {
+  const ChooseModePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: 40,
+              horizontal: 40,
+            ),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage(AppImages.chooseModeBG),
+              ),
+            ),
+          ),
+          Container(
+            color: Colors.black.withOpacity(0.15),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 40,
+              horizontal: 40,
+            ),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: SvgPicture.asset(AppVectors.logo),
+                ),
+                const Spacer(),
+                const Text(
+                  'Choose Mode',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+                const Gap(40),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        ClipOval(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(
+                              sigmaX: 10,
+                              sigmaY: 10,
+                            ),
+                            child: Container(
+                              height: 70,
+                              width: 70,
+                              decoration: const BoxDecoration(
+                                color: Color(0xFF30393C),
+                                shape: BoxShape.circle,
+                              ),
+                              child: SvgPicture.asset(
+                                AppVectors.moon,
+                                fit: BoxFit.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Gap(10),
+                        const Text(
+                          "Dark Mode",
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Gap(40),
+                    Column(
+                      children: [
+                        ClipOval(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(
+                              sigmaX: 10,
+                              sigmaY: 10,
+                            ),
+                            child: Container(
+                              height: 70,
+                              width: 70,
+                              decoration: const BoxDecoration(
+                                color: Color(0xFF30393C),
+                                shape: BoxShape.circle,
+                              ),
+                              child: SvgPicture.asset(
+                                AppVectors.sun,
+                                fit: BoxFit.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Gap(10),
+                        const Text(
+                          "Light Mode",
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const Gap(50),
+                BasicAppButton(
+                  onPressed: () {},
+                  title: "Continue",
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

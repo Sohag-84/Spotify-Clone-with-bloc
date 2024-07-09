@@ -4,6 +4,7 @@ import 'package:spotify_clone_using_bloc/common/widgets/button/basic_app_button.
 import 'package:spotify_clone_using_bloc/core/config/assets/app_images.dart';
 import 'package:spotify_clone_using_bloc/core/config/assets/app_vectors.dart';
 import 'package:spotify_clone_using_bloc/core/config/theme/app_colors.dart';
+import 'package:spotify_clone_using_bloc/presentation/choose%20mode/page/choose_mode_page.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -60,7 +61,14 @@ class GetStartedPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 BasicAppButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChooseModePage(),
+                      ),
+                    );
+                  },
                   title: "Get Started",
                 ),
               ],
