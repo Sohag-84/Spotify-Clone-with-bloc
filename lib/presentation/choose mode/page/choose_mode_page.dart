@@ -1,12 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:spotify_clone_using_bloc/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_clone_using_bloc/core/config/assets/app_images.dart';
 import 'package:spotify_clone_using_bloc/core/config/assets/app_vectors.dart';
 import 'package:spotify_clone_using_bloc/core/config/theme/app_colors.dart';
+import 'package:spotify_clone_using_bloc/presentation/choose%20mode/bloc/theme_cubit.dart';
 
 class ChooseModePage extends StatelessWidget {
   const ChooseModePage({super.key});
@@ -55,24 +57,32 @@ class ChooseModePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    ///dark mode button
                     Column(
                       children: [
-                        ClipOval(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(
-                              sigmaX: 10,
-                              sigmaY: 10,
-                            ),
-                            child: Container(
-                              height: 70,
-                              width: 70,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFF30393C),
-                                shape: BoxShape.circle,
+                        GestureDetector(
+                          onTap: () {
+                            context
+                                .read<ThemeCubit>()
+                                .updateTheme(ThemeMode.dark);
+                          },
+                          child: ClipOval(
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(
+                                sigmaX: 10,
+                                sigmaY: 10,
                               ),
-                              child: SvgPicture.asset(
-                                AppVectors.moon,
-                                fit: BoxFit.none,
+                              child: Container(
+                                height: 70,
+                                width: 70,
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFF30393C),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: SvgPicture.asset(
+                                  AppVectors.moon,
+                                  fit: BoxFit.none,
+                                ),
                               ),
                             ),
                           ),
@@ -89,24 +99,33 @@ class ChooseModePage extends StatelessWidget {
                       ],
                     ),
                     const Gap(40),
+
+                    ///light mode button
                     Column(
                       children: [
-                        ClipOval(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(
-                              sigmaX: 10,
-                              sigmaY: 10,
-                            ),
-                            child: Container(
-                              height: 70,
-                              width: 70,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFF30393C),
-                                shape: BoxShape.circle,
+                        GestureDetector(
+                          onTap: () {
+                            context
+                                .read<ThemeCubit>()
+                                .updateTheme(ThemeMode.light);
+                          },
+                          child: ClipOval(
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(
+                                sigmaX: 10,
+                                sigmaY: 10,
                               ),
-                              child: SvgPicture.asset(
-                                AppVectors.sun,
-                                fit: BoxFit.none,
+                              child: Container(
+                                height: 70,
+                                width: 70,
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFF30393C),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: SvgPicture.asset(
+                                  AppVectors.sun,
+                                  fit: BoxFit.none,
+                                ),
                               ),
                             ),
                           ),
