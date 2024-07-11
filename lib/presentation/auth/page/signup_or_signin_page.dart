@@ -6,6 +6,8 @@ import 'package:spotify_clone_using_bloc/common/widgets/appbar/appbar_button.dar
 import 'package:spotify_clone_using_bloc/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_clone_using_bloc/core/config/assets/app_images.dart';
 import 'package:spotify_clone_using_bloc/core/config/assets/app_vectors.dart';
+import 'package:spotify_clone_using_bloc/presentation/auth/page/signin_page.dart';
+import 'package:spotify_clone_using_bloc/presentation/auth/page/signup_page.dart';
 
 class SignupOrSigninPage extends StatelessWidget {
   const SignupOrSigninPage({super.key});
@@ -60,7 +62,14 @@ class SignupOrSigninPage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: BasicAppButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SignupPage(),
+                              ),
+                            );
+                          },
                           title: "Register",
                         ),
                       ),
@@ -68,13 +77,22 @@ class SignupOrSigninPage extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: TextButton(
-                          onPressed: () {},
-                          child:  Text(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SigninPage(),
+                              ),
+                            );
+                          },
+                          child: Text(
                             "Sign in",
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: context.isDarkMode?Colors.white:Colors.black,
+                              color: context.isDarkMode
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           ),
                         ),
