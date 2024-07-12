@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,8 +8,13 @@ import 'package:spotify_clone_using_bloc/core/config/theme/app_theme.dart';
 import 'package:spotify_clone_using_bloc/presentation/choose%20mode/bloc/theme_cubit.dart';
 import 'package:spotify_clone_using_bloc/presentation/splash/pages/splash_page.dart';
 
+import 'firebase_options.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
