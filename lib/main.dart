@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:spotify_clone_using_bloc/core/config/theme/app_theme.dart';
 import 'package:spotify_clone_using_bloc/presentation/choose%20mode/bloc/theme_cubit.dart';
 import 'package:spotify_clone_using_bloc/presentation/splash/pages/splash_page.dart';
+import 'package:spotify_clone_using_bloc/service_locator.dart';
 
 import 'firebase_options.dart';
 
@@ -20,6 +21,7 @@ Future<void> main() async {
         ? HydratedStorage.webStorageDirectory
         : await getApplicationDocumentsDirectory(),
   );
+  await initializeDependencies();
   runApp(const MyApp());
 }
 
