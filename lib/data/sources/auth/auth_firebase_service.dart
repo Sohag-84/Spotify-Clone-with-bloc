@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -17,7 +20,7 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
         email: signinUserReq.email,
         password: signinUserReq.password,
       );
-      return const Right("Sign In was successfull");
+      return const Right("Sign In was successful");
     } on FirebaseAuthException catch (e) {
       String message = "";
       if (e.code == 'invalid-email') {
@@ -33,11 +36,17 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
   @override
   Future<Either> signup(CreateUserReq createUserReq) async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      var data = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: createUserReq.email,
         password: createUserReq.password,
       );
-      return const Right("Sign up was successfull");
+
+      await FirebaseFirestore.instance.collection('Users').add({
+        "name": createUserReq.fullName,
+        "email": data.user?.email ?? "",
+      });
+
+      return const Right("Sign up was successful");
     } on FirebaseAuthException catch (e) {
       String message = "";
       if (e.code == 'weak-password') {
@@ -47,6 +56,9 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
       }
 
       return Left(message);
+    } catch (e) {
+      log("Error: $e");
+      return Left("An unexpected error occurred: $e");
     }
   }
 }
