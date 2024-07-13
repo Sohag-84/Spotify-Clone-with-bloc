@@ -9,7 +9,7 @@ import 'package:spotify_clone_using_bloc/domain/usercases/auth/signin.dart';
 import 'package:spotify_clone_using_bloc/presentation/auth/page/signup_page.dart';
 import 'package:spotify_clone_using_bloc/service_locator.dart';
 
-import '../../root/pages/root_page.dart';
+import '../../home/pages/home_page.dart';
 
 class SigninPage extends StatelessWidget {
   SigninPage({super.key});
@@ -59,7 +59,7 @@ class SigninPage extends StatelessWidget {
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const RootPage(),
+                          builder: (context) => const HomePage(),
                         ),
                         (route) => false,
                       );
