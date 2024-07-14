@@ -5,7 +5,7 @@ import 'package:spotify_clone_using_bloc/common/widgets/appbar/appbar_button.dar
 import 'package:spotify_clone_using_bloc/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_clone_using_bloc/core/config/assets/app_vectors.dart';
 import 'package:spotify_clone_using_bloc/data/model/auth/signin_user_req.dart';
-import 'package:spotify_clone_using_bloc/domain/usercases/auth/signin.dart';
+import 'package:spotify_clone_using_bloc/domain/usecase/auth/signin.dart';
 import 'package:spotify_clone_using_bloc/presentation/auth/page/signup_page.dart';
 import 'package:spotify_clone_using_bloc/service_locator.dart';
 
