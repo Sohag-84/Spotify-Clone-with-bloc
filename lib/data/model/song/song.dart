@@ -16,7 +16,7 @@ class SongModel {
 
   SongModel.fromJson(Map<String, dynamic> data) {
     title = data['title'];
-    artist = data['artist'];
+    artist = data['artists'];
     duration = data['duration'];
     releaseDate = data['releaseDate'];
   }
