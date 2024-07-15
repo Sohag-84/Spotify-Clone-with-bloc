@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
-abstract class SongRepository{
-
+abstract class SongRepository {
   Future<Either> getNewSongs();
+
+  Future<Either> getPlayList();
 }

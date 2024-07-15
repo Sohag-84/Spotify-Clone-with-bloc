@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:spotify_clone_using_bloc/common/helpers/is_dark_mode.dart';
 import 'package:spotify_clone_using_bloc/core/config/constants/app_urls.dart';
 import 'package:spotify_clone_using_bloc/core/config/theme/app_colors.dart';
@@ -40,39 +41,40 @@ class NewsSong extends StatelessWidget {
           width: 166,
           child: Column(
             children: [
-              Container(
-                width: 166,
-                height: 200,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage(
-                      coverPhotoList[index],
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage(
+                        coverPhotoList[index],
+                      ),
                     ),
                   ),
-                ),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    transform: Matrix4.translationValues(10, 10, 0),
-                    decoration: BoxDecoration(
-                      color: context.isDarkMode
-                          ? AppColors.darkGrey
-                          : const Color(0xFFE6E6E6),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.play_arrow_rounded,
-                      color: context.isDarkMode
-                          ? const Color(0xFF959595)
-                          : const Color(0xFF555555),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      transform: Matrix4.translationValues(10, 10, 0),
+                      decoration: BoxDecoration(
+                        color: context.isDarkMode
+                            ? AppColors.darkGrey
+                            : const Color(0xFFE6E6E6),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.play_arrow_rounded,
+                        color: context.isDarkMode
+                            ? const Color(0xFF959595)
+                            : const Color(0xFF555555),
+                      ),
                     ),
                   ),
                 ),
               ),
+              const Gap(5),
               Text(
                 songs[index].title,
                 style: const TextStyle(
