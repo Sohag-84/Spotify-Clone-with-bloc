@@ -3,10 +3,12 @@ import 'package:spotify_clone_using_bloc/common/helpers/is_dark_mode.dart';
 
 class BassicAppBar extends StatelessWidget implements PreferredSize {
   final Widget? title;
+  final Widget? action;
   final bool hideBack;
   const BassicAppBar({
     super.key,
     this.title,
+    this.action,
     this.hideBack = false,
   });
 
@@ -38,6 +40,9 @@ class BassicAppBar extends StatelessWidget implements PreferredSize {
                 ),
               ),
             ),
+      actions: [
+        action ?? Container(),
+      ],
     );
   }
 

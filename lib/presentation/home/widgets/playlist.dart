@@ -5,8 +5,10 @@ import 'package:spotify_clone_using_bloc/common/helpers/is_dark_mode.dart';
 import 'package:spotify_clone_using_bloc/presentation/home/bloc/playlist_cubit.dart';
 import 'package:spotify_clone_using_bloc/presentation/home/bloc/playlist_state.dart';
 
+import '../../../core/config/constants/app_urls.dart';
 import '../../../core/config/theme/app_colors.dart';
 import '../../../domain/entites/song/song.dart';
+import '../../song player/pages/song_player_page.dart';
 
 class Playlist extends StatelessWidget {
   const Playlist({super.key});
@@ -63,65 +65,78 @@ class Playlist extends StatelessWidget {
     return ListView.separated(
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    color: context.isDarkMode
-                        ? AppColors.darkGrey
-                        : const Color(0xFFE6E6E6),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.play_arrow_rounded,
-                    color: context.isDarkMode
-                        ? const Color(0xFF959595)
-                        : const Color(0xFF555555),
-                  ),
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SongPlayerPage(
+                  songEntity: songs[index],
+                  coverPhoto: coverPhotoList[index],
                 ),
-                const Gap(10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      songs[index].title,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
+              ),
+            );
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: context.isDarkMode
+                          ? AppColors.darkGrey
+                          : const Color(0xFFE6E6E6),
+                      shape: BoxShape.circle,
                     ),
-                    Text(
-                      songs[index].artist,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
+                    child: Icon(
+                      Icons.play_arrow_rounded,
+                      color: context.isDarkMode
+                          ? const Color(0xFF959595)
+                          : const Color(0xFF555555),
                     ),
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Text(
-                  songs[index].duration.toString().replaceAll(".", ":"),
-                ),
-                const Gap(15),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite_rounded,
-                    color: AppColors.darkGrey,
                   ),
-                ),
-              ],
-            ),
-          ],
+                  const Gap(10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        songs[index].title,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        songs[index].artist,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    songs[index].duration.toString().replaceAll(".", ":"),
+                  ),
+                  const Gap(15),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.favorite_rounded,
+                      color: AppColors.darkGrey,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         );
       },
       separatorBuilder: (context, index) => const SizedBox(
