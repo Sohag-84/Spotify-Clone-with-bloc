@@ -46,6 +46,7 @@ class NewsSong extends StatelessWidget {
                 builder: (context) => SongPlayerPage(
                   songEntity: songs[index],
                   coverPhoto: coverPhotoList[index],
+                  songUrl: songUrlList[index],
                 ),
               ),
             );

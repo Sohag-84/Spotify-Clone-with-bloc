@@ -2,7 +2,7 @@ class AppUrls {
   static const String coverFirestorage =
       "https://firebasestorage.googleapis.com/v0/b/spotify-clone-d2bfd.appspot.com/o/covers%2F";
   static const String songFirestorage =
-      "https://firebasestorage.googleapis.com/v0/b/spotify-clone-d2bfd.appspot.com/o/covers%2F";
+      "https://firebasestorage.googleapis.com/v0/b/spotify-clone-d2bfd.appspot.com/o/songs%2F";
 
   static const String mediaAlt = "alt=media";
 }
@@ -17,7 +17,6 @@ List<String> coverPhotoList = [
 ];
 
 List<String> songUrlList = [
-  //flow-211881
   "${AppUrls.songFirestorage}flow-211881.mp3?${AppUrls.mediaAlt}",
   "${AppUrls.songFirestorage}	for-her-chill-upbeat-summel-travel-vlog-and-ig-music-royalty-free-use-202298.mp3?${AppUrls.mediaAlt}",
   "${AppUrls.songFirestorage}in-slow-motion-inspiring-ambient-lounge-219592.mp3?${AppUrls.mediaAlt}",
