@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:spotify_clone_using_bloc/common/widgets/appbar/appbar_button.dart';
+import 'package:spotify_clone_using_bloc/common/widgets/favorite%20button/favorite_button.dart';
 import 'package:spotify_clone_using_bloc/core/config/theme/app_colors.dart';
 import 'package:spotify_clone_using_bloc/domain/entites/song/song.dart';
 
@@ -93,14 +94,7 @@ class SongPlayerPage extends StatelessWidget {
             ),
           ],
         ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.favorite_outline_outlined,
-            color: AppColors.darkGrey,
-            size: 35,
-          ),
-        ),
+        FavoriteButton(songEntity: songEntity),
       ],
     );
   }
