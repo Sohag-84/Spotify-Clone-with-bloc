@@ -8,6 +8,7 @@ import 'package:spotify_clone_using_bloc/core/config/assets/app_vectors.dart';
 import 'package:spotify_clone_using_bloc/core/config/theme/app_colors.dart';
 import 'package:spotify_clone_using_bloc/presentation/home/widgets/news_song.dart';
 import 'package:spotify_clone_using_bloc/presentation/home/widgets/playlist.dart';
+import 'package:spotify_clone_using_bloc/presentation/profile/page/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,6 +31,17 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: BassicAppBar(
         hideBack: true,
+        action: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProfilePage(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.person),
+        ),
         title: SvgPicture.asset(
           AppVectors.logo,
           height: 40,

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:spotify_clone_using_bloc/common/helpers/is_dark_mode.dart';
 
 class BassicAppBar extends StatelessWidget implements PreferredSize {
+  final Color? backgroundColor;
   final Widget? title;
   final Widget? action;
   final bool hideBack;
   const BassicAppBar({
     super.key,
+    this.backgroundColor,
     this.title,
     this.action,
     this.hideBack = false,
@@ -15,7 +17,7 @@ class BassicAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: backgroundColor ?? Colors.transparent,
       elevation: 0,
       title: title ?? const Text(""),
       centerTitle: true,
