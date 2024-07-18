@@ -7,7 +7,7 @@ import 'favorite_button_state.dart';
 class FavoriteButtonCubit extends Cubit<FavoriteButtonState> {
   FavoriteButtonCubit() : super(FavoriteButtonInitial());
 
-  void favoriteButtonUpdated({required String songId}) async {
+  Future<void> favoriteButtonUpdated({required String songId}) async {
     var result = await sl<AddOrRemoveFavoriteSongUsecase>().call(
       params: songId,
     );

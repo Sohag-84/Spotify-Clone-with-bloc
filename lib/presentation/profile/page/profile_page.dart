@@ -151,6 +151,7 @@ class ProfilePage extends StatelessWidget {
                               ),
                             ],
                           ),
+
                           ///song duration
                           Row(
                             children: [
@@ -161,7 +162,13 @@ class ProfilePage extends StatelessWidget {
                               ),
                               const Gap(15),
                               FavoriteButton(
+                                key: UniqueKey(),
                                 songEntity: state.favoriteSongs[index],
+                                function: () {
+                                  context
+                                      .read<FavoriteSongCubit>()
+                                      .removeSong(index: index);
+                                },
                               ),
                             ],
                           ),
