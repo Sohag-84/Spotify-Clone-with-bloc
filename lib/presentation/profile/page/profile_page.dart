@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:spotify_clone_using_bloc/common/helpers/is_dark_mode.dart';
 import 'package:spotify_clone_using_bloc/common/widgets/appbar/appbar_button.dart';
+import 'package:spotify_clone_using_bloc/core/config/constants/app_urls.dart';
+import 'package:spotify_clone_using_bloc/presentation/profile/bloc/favorite_song_cubit.dart';
+import 'package:spotify_clone_using_bloc/presentation/profile/bloc/favorite_song_state.dart';
 import 'package:spotify_clone_using_bloc/presentation/profile/bloc/profile_info_cubit.dart';
 import 'package:spotify_clone_using_bloc/presentation/profile/bloc/profile_info_state.dart';
 
@@ -17,8 +20,11 @@ class ProfilePage extends StatelessWidget {
         title: Text("Profile"),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _profileInfo(context),
+          const Gap(20),
+          _favoriteSongs(),
         ],
       ),
     );
@@ -78,6 +84,50 @@ class ProfilePage extends StatelessWidget {
           }
           return Container();
         }),
+      ),
+    );
+  }
+
+  Widget _favoriteSongs() {
+    return BlocProvider(
+      create: (context) => FavoriteSongCubit()..getFavoriteSongs(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text("FAVORITE SONGS"),
+            const Gap(10),
+            BlocBuilder<FavoriteSongCubit, FavoriteSongState>(
+              builder: (context, state) {
+                if (state is FavoriteSongLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (state is FavoriteSongLoaded) {
+                  return ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Row(
+                        children: [],
+                      );
+                    },
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 12),
+                    itemCount: state.favoriteSongs.length,
+                  );
+                }
+                if (state is FavoriteSongFailure) {
+                  return const Center(
+                    child: Text("Something is wrong. Plz try again."),
+                  );
+                }
+                return Container();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
