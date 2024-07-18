@@ -8,6 +8,7 @@ import 'package:spotify_clone_using_bloc/presentation/profile/bloc/favorite_song
 import 'package:spotify_clone_using_bloc/presentation/profile/bloc/favorite_song_state.dart';
 import 'package:spotify_clone_using_bloc/presentation/profile/bloc/profile_info_cubit.dart';
 import 'package:spotify_clone_using_bloc/presentation/profile/bloc/profile_info_state.dart';
+import 'package:spotify_clone_using_bloc/presentation/song%20player/pages/song_player_page.dart';
 
 import '../../../common/widgets/favorite button/favorite_button.dart';
 
@@ -111,68 +112,82 @@ class ProfilePage extends StatelessWidget {
                   return ListView.separated(
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ///song cover photo, title and artists name
-                          Row(
-                            children: [
-                              Container(
-                                height: 70,
-                                width: 70,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      coverPhotoList[index],
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SongPlayerPage(
+                                songEntity: state.favoriteSongs[index],
+                                coverPhoto: coverPhotoList[index],
+                                songUrl: songUrlList[index],
+                              ),
+                            ),
+                          );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ///song cover photo, title and artists name
+                            Row(
+                              children: [
+                                Container(
+                                  height: 70,
+                                  width: 70,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                        coverPhotoList[index],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const Gap(10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    state.favoriteSongs[index].title,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
+                                const Gap(10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      state.favoriteSongs[index].title,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    state.favoriteSongs[index].artist,
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400,
+                                    Text(
+                                      state.favoriteSongs[index].artist,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                  ],
+                                ),
+                              ],
+                            ),
 
-                          ///song duration
-                          Row(
-                            children: [
-                              Text(
-                                state.favoriteSongs[index].duration
-                                    .toString()
-                                    .replaceAll(".", ":"),
-                              ),
-                              const Gap(15),
-                              FavoriteButton(
-                                key: UniqueKey(),
-                                songEntity: state.favoriteSongs[index],
-                                function: () {
-                                  context
-                                      .read<FavoriteSongCubit>()
-                                      .removeSong(index: index);
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
+                            ///song duration
+                            Row(
+                              children: [
+                                Text(
+                                  state.favoriteSongs[index].duration
+                                      .toString()
+                                      .replaceAll(".", ":"),
+                                ),
+                                const Gap(15),
+                                FavoriteButton(
+                                  key: UniqueKey(),
+                                  songEntity: state.favoriteSongs[index],
+                                  function: () {
+                                    context
+                                        .read<FavoriteSongCubit>()
+                                        .removeSong(index: index);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       );
                     },
                     separatorBuilder: (context, index) =>
